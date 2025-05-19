@@ -34,7 +34,7 @@ $totalMedicaments = $countResult->fetch_assoc()['total'];
 </head>
 <body>
     <div class="container">
-        <h1>Gestion des Médicaments</h1>
+        <h1 class="h1">Gestion des Médicaments</h1>
         
         <?php include 'menu.php'; ?>
         

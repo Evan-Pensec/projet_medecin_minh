@@ -66,7 +66,7 @@ if ($result) {
 </head>
 <body>
     <div class="container">
-        <h1>Gestion des Patients</h1>
+        <h1 class="h1">Gestion des Patients</h1>
         
         <?php include 'menu.php'; ?>
         
@@ -156,7 +156,13 @@ if ($result) {
                                         <th>N°</th>
                                         <th>Nom</th>
                                         <th>Prénom</th>
+                                        <th>Adresse</th>
+                                        <th>Code postal</th>
+                                        <th>Ville</th>
+                                        <th>Pays</th>
+                                        <th>Numéro de Sécu</th>
                                         <th>Téléphone</th>
+                                        <th>Adresse mail</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -166,7 +172,13 @@ if ($result) {
                                             <td><?php echo $p['Numero_patient']; ?></td>
                                             <td><?php echo $p['nom']; ?></td>
                                             <td><?php echo $p['prenom']; ?></td>
+                                            <td><?php echo $p['adresse']; ?></td>
+                                            <td><?php echo $p['code_postal']; ?></td>
+                                            <td><?php echo $p['ville']; ?></td>
+                                            <td><?php echo $p['pays']; ?></td>
+                                            <td><?php echo $p['numero_securite_sociale']; ?></td>
                                             <td><?php echo $p['telephone']; ?></td>
+                                            <td><?php echo $p['adresse_mail']; ?></td>
                                             <td>
                                                 <a href="?edit=<?php echo $p['Numero_patient']; ?>" class="btn btn-sm btn-primary">Modifier</a>
                                                 <a href="gestion_ordonnances.php?patient=<?php echo $p['Numero_patient']; ?>" class="btn btn-sm btn-success">Ordonnance</a>

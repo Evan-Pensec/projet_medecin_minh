@@ -101,7 +101,7 @@ if (!empty($searchMed)) {
 </head>
 <body>
     <div class="container">
-        <h1>Gestion des Ordonnances</h1>
+        <h1 class="h1">Gestion des Ordonnances</h1>
         
         <?php include 'menu.php'; ?>
         
@@ -162,7 +162,6 @@ if (!empty($searchMed)) {
                                             <td><?php echo date('d/m/Y', strtotime($ord['Date'])); ?></td>
                                             <td>
                                                 <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ord['Numero_ordonnance']; ?>" class="btn btn-sm btn-primary">Consulter</a>
-                                                <a href="imprimer_ordonnance.php?ordonnance=<?php echo $ord['Numero_ordonnance']; ?>" class="btn btn-sm btn-secondary" target="_blank">Imprimer</a>
                                             </td>
                                         </tr>
                                     <?php endwhile; ?>
@@ -194,7 +193,7 @@ if (!empty($searchMed)) {
                                                     <td><?php echo $detail['Designation']; ?></td>
                                                     <td><?php echo $detail['Posologie']; ?></td>
                                                     <td>
-                                                        <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ordonnance['Numero_ordonnance']; ?>&supprimer_detail=<?php echo $detail['Numero_detail']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce médicament ?')">Supprimer</a>
+                                                        <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ordonnance['Numero_ordonnance']; ?>&supprimer_detail=<?php echo $detail['Numero_detail']; ?>" class="btn btn-sm btn-danger">Supprimer</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -243,9 +242,6 @@ if (!empty($searchMed)) {
                                 </div>
                                 
                                 <div class="mt-4">
-                                    <a href="imprimer_ordonnance.php?ordonnance=<?php echo $ordonnance['Numero_ordonnance']; ?>" class="btn btn-primary" target="_blank">
-                                        Imprimer l'ordonnance
-                                    </a>
                                     <a href="gestion_ordonnances.php?patient=<?php echo $patient['Numero_patient']; ?>" class="btn btn-secondary">
                                         Terminer
                                     </a>

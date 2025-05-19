@@ -2,7 +2,21 @@ body{
     margin: 0 auto;
 }
 
-td{
+th{
     background-color: rgb(180, 180, 180);
     border: 3px solid black;
+}
+
+td{
+    background-color: rgb(230, 230, 230);
+    border: 3px solid rgb(53, 53, 53);
+
+}
+
+.h1{
+    text-align: center;
+}
+
+.card-title{
+    font-size: 20px;
 }
