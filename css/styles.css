@@ -1,0 +1,8 @@
+body{
+    margin: 0 auto;
+}
+
+td{
+    background-color: rgb(180, 180, 180);
+    border: 3px solid black;
+}

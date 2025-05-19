@@ -1,8 +1,6 @@
 <?php
-// Inclusion du fichier de connexion
 require_once 'connexion.php';
 
-// Récupération du patient sélectionné
 $patient = null;
 if (isset($_GET['patient']) && is_numeric($_GET['patient'])) {
     $patientId = intval($_GET['patient']);
@@ -12,7 +10,6 @@ if (isset($_GET['patient']) && is_numeric($_GET['patient'])) {
     }
 }
 
-// Traitement de la création d'une nouvelle ordonnance
 if (isset($_POST['creer_ordonnance']) && $patient) {
     $patientId = $patient['Numero_patient'];
     $date = date('Y-m-d');
@@ -22,7 +19,6 @@ if (isset($_POST['creer_ordonnance']) && $patient) {
     
     if ($stmt->execute()) {
         $ordonnanceId = $conn->insert_id;
-        // Rediriger vers la même page avec l'ordonnance créée
         header("Location: gestion_ordonnances.php?patient=$patientId&ordonnance=$ordonnanceId");
         exit;
     } else {
@@ -31,7 +27,6 @@ if (isset($_POST['creer_ordonnance']) && $patient) {
     }
 }
 
-// Récupération de l'ordonnance en cours
 $ordonnance = null;
 $details = [];
 if (isset($_GET['ordonnance']) && is_numeric($_GET['ordonnance'])) {
@@ -40,7 +35,6 @@ if (isset($_GET['ordonnance']) && is_numeric($_GET['ordonnance'])) {
     if ($result && $result->num_rows > 0) {
         $ordonnance = $result->fetch_assoc();
         
-        // Récupérer les détails de l'ordonnance
         $detailsResult = $conn->query("SELECT d.*, m.Designation FROM Detail d JOIN Medicament m ON d.Code_medicament = m.Code_medicament WHERE d.Numero_ordonnance = $ordonnanceId");
         if ($detailsResult) {
             while ($row = $detailsResult->fetch_assoc()) {
@@ -50,7 +44,6 @@ if (isset($_GET['ordonnance']) && is_numeric($_GET['ordonnance'])) {
     }
 }
 
-// Ajout d'un médicament à l'ordonnance
 if (isset($_POST['ajouter_medicament']) && $ordonnance) {
     $medicamentId = $_POST['medicament'];
     $posologie = $_POST['posologie'];
@@ -60,7 +53,6 @@ if (isset($_POST['ajouter_medicament']) && $ordonnance) {
     $stmt->bind_param("iss", $ordonnanceId, $medicamentId, $posologie);
     
     if ($stmt->execute()) {
-        // Rafraîchir la page pour afficher le nouveau médicament
         header("Location: gestion_ordonnances.php?patient={$ordonnance['Numero_patient']}&ordonnance=$ordonnanceId");
         exit;
     } else {
@@ -69,12 +61,10 @@ if (isset($_POST['ajouter_medicament']) && $ordonnance) {
     }
 }
 
-// Suppression d'un médicament de l'ordonnance
 if (isset($_GET['supprimer_detail']) && is_numeric($_GET['supprimer_detail']) && $ordonnance) {
     $detailId = intval($_GET['supprimer_detail']);
     
     if ($conn->query("DELETE FROM Detail WHERE Numero_detail = $detailId")) {
-        // Rafraîchir la page
         header("Location: gestion_ordonnances.php?patient={$ordonnance['Numero_patient']}&ordonnance={$ordonnance['Numero_ordonnance']}");
         exit;
     } else {
@@ -83,7 +73,6 @@ if (isset($_GET['supprimer_detail']) && is_numeric($_GET['supprimer_detail']) &&
     }
 }
 
-// Recherche de médicaments
 $searchMed = isset($_GET['search_med']) ? $_GET['search_med'] : '';
 $medicaments = [];
 
@@ -106,7 +95,7 @@ if (!empty($searchMed)) {
 <head>
     <title>Gestion des Ordonnances</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" >
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
     </style>
 </head>

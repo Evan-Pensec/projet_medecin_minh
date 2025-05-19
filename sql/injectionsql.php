@@ -12,7 +12,7 @@ $zard=explode("/", $nom);
 $ids=explode("#", $id);
 $texts=explode("#", $text);
 foreach($zard as $zlek){
-    $sql='INSERT INTO `medicament`(`Code_medicament`, `Designation`, `Laboratoire`) VALUES ('.$ids[$x].',"'.$texts[$x].'","'.$zlek.'")';
+    $sql='INSERT INTO `medicament`(`Code_medicament`, `Designation`, `Laboratoire`) VALUES ("'.$ids[$x].'","'.$texts[$x].'","'.$zlek.'")';
     $pdo->exec($sql) ?? null;
     $x=$x+1;
 }

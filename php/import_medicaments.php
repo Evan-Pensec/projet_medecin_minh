@@ -50,7 +50,7 @@ function chargerMedicaments() {
 <head>
     <title>Importation des médicaments</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" >
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
     </style>
 </head>

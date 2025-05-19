@@ -60,7 +60,7 @@ if ($result) {
 <head>
     <title>Gestion des Patients</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" >
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
     </style>
 </head>
