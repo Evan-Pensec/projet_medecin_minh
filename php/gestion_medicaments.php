@@ -28,7 +28,7 @@ $totalMedicaments = $countResult->fetch_assoc()['total'];
 <head>
     <title>Gestion des Médicaments</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" >
     <style>
     </style>
 </head>
