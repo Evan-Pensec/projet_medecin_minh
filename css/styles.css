@@ -88,8 +88,9 @@ h5{
 
 .form_patients{
     margin-left: 800px;
-    width: 300px;
-    background-color: pink;
+    width: 400px;
+    background-color: rgb(255, 177, 216) !important;
+    border-radius: 20px;
 }
 
 .liste_patients{
@@ -101,4 +102,5 @@ h5{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    padding: 5px;
 }
