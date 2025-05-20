@@ -41,25 +41,23 @@ if ($result) {
     <title>Gestion des Médicaments</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/styles.css">
-    <style>
-    </style>
 </head>
 <body>
-    <div class="container">
+    <div>
         <h1 class="h1">Gestion des Médicaments</h1>
         
         <?php include 'menu.php'; ?>
         
-        <div class="card mt-4">
-            <div class="card-body">
+        <div>
+            <div>
                 <h5 class="card-title">Recherche de médicaments</h5>
                 
-                <form method="get" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Rechercher par nom, code ou laboratoire" value="<?php echo htmlspecialchars($search); ?>">
-                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                <form method="get">
+                    <div>
+                        <input type="text" name="search" placeholder="Rechercher par nom, code ou laboratoire" value="<?php echo htmlspecialchars($search); ?>">
+                        <button type="submit">Rechercher</button>
                         <?php if (!empty($search)): ?>
-                            <a href="gestion_medicaments.php" class="btn btn-secondary">Réinitialiser</a>
+                            <a href="gestion_medicaments.php">Réinitialiser</a>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -68,12 +66,10 @@ if ($result) {
                 
                 <?php if (!empty($search)): ?>
                     <p>Résultats pour la recherche "<?php echo htmlspecialchars($search); ?>" : <?php echo count($medicaments); ?> médicament(s) trouvé(s)</p>
-                <?php else: ?>
-                    
                 <?php endif; ?>
                 
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Code</th>
@@ -92,7 +88,7 @@ if ($result) {
                             
                             <?php if (empty($medicaments)): ?>
                                 <tr>
-                                    <td colspan="3" class="text-center">Aucun médicament trouvé</td>
+                                    <td colspan="3">Aucun médicament trouvé</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
@@ -100,16 +96,16 @@ if ($result) {
                 </div>
                 
                 <?php if ($totalPages > 1): ?>
-                    <nav aria-label="Navigation des pages">
-                        <ul class="pagination">
+                    <nav>
+                        <ul>
                             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                             <?php if ($i == $page): ?>
-                            <ssn class="page-current"><?php echo $i; ?></ssn>
+                            <span><?php echo $i; ?></span>
                             <?php else: ?>
-                            <a href="?page=<?php echo $i; ?><?php echo !empty($search) ? '&search=' . urlencode($search) : ''; ?>" class="page-link"><?php echo $i; ?></a>
+                            <a href="?page=<?php echo $i; ?><?php echo !empty($search) ? '&search=' . urlencode($search) : ''; ?>"><?php echo $i; ?></a>
                             <?php endif; ?>
                             <?php if ($i < $totalPages): ?>
-                            <span class="page-separator">, </span>
+                            <span>, </span>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>

@@ -96,48 +96,45 @@ if (!empty($searchMed)) {
     <title>Gestion des Ordonnances</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/styles.css">
-    <style>
-    </style>
 </head>
 <body>
-    <div class="container">
+    <div>
         <h1 class="h1">Gestion des Ordonnances</h1>
         
         <?php include 'menu.php'; ?>
         
         <?php if (isset($message)): ?>
-            <div class="alert alert-<?php echo $alertType; ?> alert-dismissible fade show mt-3">
+            <div>
                 <?php echo $message; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         <?php endif; ?>
         
         <?php if (!$patient): ?>
-            <div class="alert alert-info mt-4">
+            <div>
                 Veuillez sélectionner un patient dans la 
-                <a href="gestion_patients.php" class="alert-link">liste des patients</a> 
+                <a href="gestion_patients.php">liste des patients</a> 
                 pour créer ou consulter une ordonnance.
             </div>
         <?php else: ?>
-            <div class="card mt-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Patient : <?php echo $patient['nom'] . ' ' . $patient['prenom']; ?></h5>
+            <div>
+                <div>
+                    <h5>Patient : <?php echo $patient['nom'] . ' ' . $patient['prenom']; ?></h5>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+                <div>
+                    <div>
+                        <div>
                             <p><strong>Adresse :</strong> <?php echo $patient['adresse']; ?>, <?php echo $patient['code_postal']; ?> <?php echo $patient['ville']; ?></p>
                             <p><strong>N° Sécurité Sociale :</strong> <?php echo $patient['numero_securite_sociale']; ?></p>
                         </div>
-                        <div class="col-md-6">
+                        <div>
                             <p><strong>Téléphone :</strong> <?php echo $patient['telephone']; ?></p>
                             <p><strong>Email :</strong> <?php echo $patient['adresse_mail']; ?></p>
                         </div>
                     </div>
                     
                     <?php if (!$ordonnance): ?>
-                        <form method="post" class="mt-3">
-                            <button type="submit" name="creer_ordonnance" class="btn btn-success">
+                        <form method="post">
+                            <button type="submit" name="creer_ordonnance">
                                 Créer une nouvelle ordonnance
                             </button>
                         </form>
@@ -146,8 +143,8 @@ if (!empty($searchMed)) {
                         $ordonnancesResult = $conn->query("SELECT * FROM Ordonnance WHERE Numero_patient = {$patient['Numero_patient']} ORDER BY Date DESC");
                         if ($ordonnancesResult && $ordonnancesResult->num_rows > 0):
                         ?>
-                            <h5 class="mt-4">Ordonnances précédentes</h5>
-                            <table class="table table-striped">
+                            <h5>Ordonnances précédentes</h5>
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>N°</th>
@@ -161,7 +158,7 @@ if (!empty($searchMed)) {
                                             <td><?php echo $ord['Numero_ordonnance']; ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($ord['Date'])); ?></td>
                                             <td>
-                                                <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ord['Numero_ordonnance']; ?>" class="btn btn-sm btn-primary">Consulter</a>
+                                                <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ord['Numero_ordonnance']; ?>">Consulter</a>
                                             </td>
                                         </tr>
                                     <?php endwhile; ?>
@@ -170,16 +167,16 @@ if (!empty($searchMed)) {
                         <?php endif; ?>
                         
                     <?php else: ?>
-                        <div class="mt-3">
+                        <div>
                             <h5>Ordonnance N° <?php echo $ordonnance['Numero_ordonnance']; ?> du <?php echo date('d/m/Y', strtotime($ordonnance['Date'])); ?></h5>
                             
-                            <div class="mt-3">
+                            <div>
                                 <h6>Médicaments prescrits</h6>
                                 
                                 <?php if (empty($details)): ?>
-                                    <div class="alert alert-info">Aucun médicament ajouté à cette ordonnance.</div>
+                                    <div>Aucun médicament ajouté à cette ordonnance.</div>
                                 <?php else: ?>
-                                    <table class="table table-striped">
+                                    <table>
                                         <thead>
                                             <tr>
                                                 <th>Médicament</th>
@@ -193,7 +190,7 @@ if (!empty($searchMed)) {
                                                     <td><?php echo $detail['Designation']; ?></td>
                                                     <td><?php echo $detail['Posologie']; ?></td>
                                                     <td>
-                                                        <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ordonnance['Numero_ordonnance']; ?>&supprimer_detail=<?php echo $detail['Numero_detail']; ?>" class="btn btn-sm btn-danger">Supprimer</a>
+                                                        <a href="?patient=<?php echo $patient['Numero_patient']; ?>&ordonnance=<?php echo $ordonnance['Numero_ordonnance']; ?>&supprimer_detail=<?php echo $detail['Numero_detail']; ?>">Supprimer</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -201,26 +198,26 @@ if (!empty($searchMed)) {
                                     </table>
                                 <?php endif; ?>
                                 
-                                <div class="card mt-4">
-                                    <div class="card-header">
-                                        <h6 class="mb-0">Ajouter un médicament</h6>
+                                <div>
+                                    <div>
+                                        <h6>Ajouter un médicament</h6>
                                     </div>
-                                    <div class="card-body">
-                                        <form method="get" class="mb-3">
+                                    <div>
+                                        <form method="get">
                                             <input type="hidden" name="patient" value="<?php echo $patient['Numero_patient']; ?>">
                                             <input type="hidden" name="ordonnance" value="<?php echo $ordonnance['Numero_ordonnance']; ?>">
                                             
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="search_med" placeholder="Rechercher un médicament" value="<?php echo htmlspecialchars($searchMed); ?>">
-                                                <button type="submit" class="btn btn-primary">Rechercher</button>
+                                            <div>
+                                                <input type="text" name="search_med" placeholder="Rechercher un médicament" value="<?php echo htmlspecialchars($searchMed); ?>">
+                                                <button type="submit">Rechercher</button>
                                             </div>
                                         </form>
                                         
                                         <?php if (!empty($searchMed) && !empty($medicaments)): ?>
                                             <form method="post">
-                                                <div class="mb-3">
-                                                    <label for="medicament" class="form-label">Sélectionner un médicament</label>
-                                                    <select class="form-select" id="medicament" name="medicament" required>
+                                                <div>
+                                                    <label for="medicament">Sélectionner un médicament</label>
+                                                    <select id="medicament" name="medicament" required>
                                                         <option value="">-- Sélectionner --</option>
                                                         <?php foreach ($medicaments as $med): ?>
                                                             <option value="<?php echo $med['Code_medicament']; ?>"><?php echo $med['Designation']; ?></option>
@@ -228,21 +225,21 @@ if (!empty($searchMed)) {
                                                     </select>
                                                 </div>
                                                 
-                                                <div class="mb-3">
-                                                    <label for="posologie" class="form-label">Posologie</label>
-                                                    <textarea class="form-control" id="posologie" name="posologie" rows="2" required></textarea>
+                                                <div>
+                                                    <label for="posologie">Posologie</label>
+                                                    <textarea id="posologie" name="posologie" rows="2" required></textarea>
                                                 </div>
                                                 
-                                                <button type="submit" name="ajouter_medicament" class="btn btn-success">Ajouter à l'ordonnance</button>
+                                                <button type="submit" name="ajouter_medicament">Ajouter à l'ordonnance</button>
                                             </form>
                                         <?php elseif (!empty($searchMed)): ?>
-                                            <div class="alert alert-warning">Aucun médicament trouvé pour cette recherche.</div>
+                                            <div>Aucun médicament trouvé pour cette recherche.</div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                                 
-                                <div class="mt-4">
-                                    <a href="gestion_ordonnances.php?patient=<?php echo $patient['Numero_patient']; ?>" class="btn btn-secondary">
+                                <div>
+                                    <a href="gestion_ordonnances.php?patient=<?php echo $patient['Numero_patient']; ?>">
                                         Terminer
                                     </a>
                                 </div>

@@ -20,3 +20,10 @@ td{
 .card-title{
     font-size: 20px;
 }
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    padding: 0;
+    margin: 0;
+}
