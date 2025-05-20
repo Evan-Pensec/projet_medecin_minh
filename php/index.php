@@ -1,4 +1,4 @@
 <?php
-header("Location: gestion_patients.php");
+header("Location: menu.php");
 exit;
 ?>

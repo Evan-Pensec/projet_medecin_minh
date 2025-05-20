@@ -1,19 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des Patients</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
 <nav>
-    <div>
-        <a href="index.php">Cabinet Médical</a>
-        
+    <div class="menu">
+        <a href="index.php">Menu</a>
         <div>
-            <ul>
-                <li>
+            <div class="menu-items">
+                <div class="menu-item">
                     <a href="gestion_patients.php">Patients</a>
-                </li>
-                <li>
+                </div>
+                <div class="menu-item">
                     <a href="gestion_medicaments.php">Médicaments</a>
-                </li>
-                <li>
+                </div>
+                <div class="menu-item">
                     <a href="gestion_ordonnances.php">Ordonnances</a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
+</body>
+</html>

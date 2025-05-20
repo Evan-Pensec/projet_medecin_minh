@@ -21,9 +21,33 @@ td{
     font-size: 20px;
 }
 
+.pagination{
+    margin-right: 950px;
+}
+
+.menu-items {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    padding-inline-start: 0;
+}
+
+.menu-item {
+    margin-right: 15px;
+}
+
 ul {
     list-style-type: none;
-    padding-inline-start: 0;
-    padding: 0;
     margin: 0;
+    padding: 0 !important;
+    padding-inline-start: 0 !important;
+}
+
+.menu{
+    padding: 5px 5px;
+    background-color: rgb(185, 102, 102);
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 8px 8px rgb(231, 127, 127);
 }

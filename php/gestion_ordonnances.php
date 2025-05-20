@@ -99,10 +99,10 @@ if (!empty($searchMed)) {
 </head>
 <body>
     <div>
-        <h1 class="h1">Gestion des Ordonnances</h1>
+        
         
         <?php include 'menu.php'; ?>
-        
+        <h1 class="h1">Gestion des Ordonnances</h1>
         <?php if (isset($message)): ?>
             <div>
                 <?php echo $message; ?>

@@ -6,12 +6,12 @@ $limit = 100;
 $offset = ($page - 1) * $limit;
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$medicaments = [];
+$medicaments = [];  //ça initialise un tableau vide où yaura les médicaments qui sont trouvés avec la recherche
 
-if (!empty($search)) {
-    $searchTerm = '%' . $search . '%';
-    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ?");
-    $countStmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);
+if (!empty($search)) {  //ça vérifie si ya quelque chose dans la barre de recherche
+    $searchTerm = '%' . $search . '%';  //ça ajoute des % entre chaque terme pour pouvoir faire une recherche séparée de chaque terme
+    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ?");  //
+    $countStmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);  //les $searchTerm servent à récupérer les termes de recherche (le code, la désignation et le laboratoire)
     $countStmt->execute();
     $countResult = $countStmt->get_result();
     $totalMedicaments = $countResult->fetch_assoc()['total'];
@@ -44,10 +44,10 @@ if ($result) {
 </head>
 <body>
     <div>
-        <h1 class="h1">Gestion des Médicaments</h1>
+        
         
         <?php include 'menu.php'; ?>
-        
+        <h1 class="h1">Gestion des Médicaments</h1>
         <div>
             <div>
                 <h5 class="card-title">Recherche de médicaments</h5>
@@ -96,19 +96,19 @@ if ($result) {
                 </div>
                 
                 <?php if ($totalPages > 1): ?>
-                    <nav>
-                        <ul>
-                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <?php if ($i == $page): ?>
-                            <span><?php echo $i; ?></span>
-                            <?php else: ?>
-                            <a href="?page=<?php echo $i; ?><?php echo !empty($search) ? '&search=' . urlencode($search) : ''; ?>"><?php echo $i; ?></a>
-                            <?php endif; ?>
-                            <?php if ($i < $totalPages): ?>
-                            <span>, </span>
-                            <?php endif; ?>
-                            <?php endfor; ?>
-                        </ul>
+                    <nav class="pagination">
+                        <div class="menu-items">
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <?php if ($i == $page): ?>
+                        <span><?php echo $i; ?></span>
+                        <?php else: ?>
+                        <a href="?page=<?php echo $i; ?><?php echo !empty($search) ? '&search=' . urlencode($search) : ''; ?>"><?php echo $i; ?></a>
+                        <?php endif; ?>
+                        <?php if ($i < $totalPages): ?>
+                        <span>, </span>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                        </div>
                     </nav>
                 <?php endif; ?>
             </div>
