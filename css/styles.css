@@ -86,17 +86,18 @@ h5{
     margin-left: 100px;
 }
 
-.form-patient {
+.form_patients {
     background-color: #e0f0ff;
     width: 400px;
     margin: 20px auto;
     padding: 15px;
-    border: 2px solid #aaccee;
-    border-radius: 10px;
+    border: 3px solid #88bbdd;
+    border-radius: 12px;
     font-family: Arial, sans-serif;
+    box-shadow: 3px 3px 8px #aaccee;
 }
 
-.form-patient h3 {
+.form_patients h3 {
     text-align: center;
     color: #336699;
     margin-bottom: 15px;
@@ -104,26 +105,29 @@ h5{
 }
 
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .form-group label {
     display: block;
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     color: #333;
 }
 
 .form-group input {
     width: 100%;
-    padding: 5px;
-    border: 1px solid #999;
-    border-radius: 5px;
+    padding: 8px;
+    border: 2px solid #99ccee;
+    border-radius: 6px;
+    background-color: #f5f9ff;
 }
 
 .form-group input:focus {
     border-color: #66aaff;
-    background-color: #f5f9ff;
+    background-color: #eef5ff;
+    outline: none;
+    box-shadow: 0 0 5px #aaddff;
 }
 
 .form-row {
@@ -140,7 +144,7 @@ h5{
     color: white;
     border: none;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 7px;
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
@@ -150,25 +154,23 @@ h5{
     background-color: #5588bb;
 }
 
-@media (max-width: 500px) {
-    .form-patient {
-        width: 90%;
-    }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 5px;
-    }
+.button {
+    background-color: #66aadd;
+    border: 2px solid #4488bb;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 7px 12px;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 1px 1px 1px #336699;
+}
+
+.button:hover {
+    background-color: #5599cc;
 }
 
 .liste_patients{
     margin-left: 400px;
 }
 
-.button{
-    background-color: rgb(207, 207, 207);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 5px;
-}

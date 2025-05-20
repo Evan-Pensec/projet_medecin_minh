@@ -68,48 +68,48 @@ if ($result) {
                                 <input type="hidden" name="id" value="<?php echo $patient['Numero_patient']; ?>">
                             <?php endif; ?>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="nom">Nom</label>
                                 <input type="text" id="nom" name="nom" required value="<?php echo ($patient) ? $patient['nom'] : ''; ?>">
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="prenom">Prénom</label>
                                 <input type="text" id="prenom" name="prenom" required value="<?php echo ($patient) ? $patient['prenom'] : ''; ?>">
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="adresse">Adresse</label>
                                 <input type="text" id="adresse" name="adresse" value="<?php echo ($patient) ? $patient['adresse'] : ''; ?>">
                             </div>
                             
-                            <div>
-                                <div>
+                            <div class="form-row">
+                                <div class="form-group">
                                     <label for="code_postal">Code Postal</label>
                                     <input type="text" id="code_postal" name="code_postal" value="<?php echo ($patient) ? $patient['code_postal'] : ''; ?>">
                                 </div>
-                                <div>
+                                <div class="form-group">
                                     <label for="ville">Ville</label>
                                     <input type="text" id="ville" name="ville" value="<?php echo ($patient) ? $patient['ville'] : ''; ?>">
                                 </div>
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="pays">Pays</label>
                                 <input type="text" id="pays" name="pays" value="<?php echo ($patient) ? $patient['pays'] : ''; ?>">
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="numero_ss">Numéro de Sécurité Sociale</label>
                                 <input type="text" id="numero_ss" name="numero_ss" value="<?php echo ($patient) ? $patient['numero_securite_sociale'] : ''; ?>">
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="telephone">Téléphone</label>
                                 <input type="tel" id="telephone" name="telephone" value="<?php echo ($patient) ? $patient['telephone'] : ''; ?>">
                             </div>
                             
-                            <div>
+                            <div class="form-group">
                                 <label for="email">Adresse Email</label>
                                 <input type="email" id="email" name="email" value="<?php echo ($patient) ? $patient['adresse_mail'] : ''; ?>">
                             </div>
