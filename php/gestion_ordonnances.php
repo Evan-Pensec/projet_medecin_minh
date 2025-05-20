@@ -21,9 +21,6 @@ if (isset($_POST['creer_ordonnance']) && $patient) {
         $ordonnanceId = $conn->insert_id;
         header("Location: gestion_ordonnances.php?patient=$patientId&ordonnance=$ordonnanceId");
         exit;
-    } else {
-        $message = "Erreur lors de la création de l'ordonnance : " . $conn->error;
-        $alertType = "danger";
     }
 }
 
@@ -55,9 +52,6 @@ if (isset($_POST['ajouter_medicament']) && $ordonnance) {
     if ($stmt->execute()) {
         header("Location: gestion_ordonnances.php?patient={$ordonnance['Numero_patient']}&ordonnance=$ordonnanceId");
         exit;
-    } else {
-        $message = "Erreur lors de l'ajout du médicament : " . $conn->error;
-        $alertType = "danger";
     }
 }
 
@@ -67,9 +61,6 @@ if (isset($_GET['supprimer_detail']) && is_numeric($_GET['supprimer_detail']) &&
     if ($conn->query("DELETE FROM Detail WHERE Numero_detail = $detailId")) {
         header("Location: gestion_ordonnances.php?patient={$ordonnance['Numero_patient']}&ordonnance={$ordonnance['Numero_ordonnance']}");
         exit;
-    } else {
-        $message = "Erreur lors de la suppression : " . $conn->error;
-        $alertType = "danger";
     }
 }
 
@@ -103,11 +94,6 @@ if (!empty($searchMed)) {
         
         <?php include 'menu.php'; ?>
         <h1 class="h1">Gestion des Ordonnances</h1>
-        <?php if (isset($message)): ?>
-            <div>
-                <?php echo $message; ?>
-            </div>
-        <?php endif; ?>
         
         <?php if (!$patient): ?>
             <div>

@@ -47,14 +47,19 @@ ul {
     cursor: pointer;
     border-radius: 4px;
     box-shadow: 0px 8px 8px rgb(231, 127, 127);
-
 }
 
 .amenu{
     text-decoration: none;
-    color: inherit;
+    color: white;
+    background-color: rgb(92, 54, 54);
     border: 2px solid rgb(134, 76, 76);
     border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.amenu:hover{
+    transform: scale(1.1) rotate(2deg);
 }
 
 .aordo{
@@ -62,7 +67,13 @@ ul {
     color: inherit;
     background-color: rgb(216, 216, 216);
     border-radius: 40px;
+    transition: all 0.3s ease;
 }
+
+.aordo:hover{
+    transform: scale(1.1) rotate(2deg);
+}
+
 
 h5{
     font-size: 30px;

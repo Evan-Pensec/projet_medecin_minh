@@ -6,12 +6,12 @@ $limit = 100;
 $offset = ($page - 1) * $limit;
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$medicaments = [];  //ça initialise un tableau vide où yaura les médicaments qui sont trouvés avec la recherche
+$medicaments = [];
 
-if (!empty($search)) {  //ça vérifie si ya quelque chose dans la barre de recherche
-    $searchTerm = '%' . $search . '%';  //ça ajoute des % entre chaque terme pour pouvoir faire une recherche séparée de chaque terme
-    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ?");  //
-    $countStmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);  //les $searchTerm servent à récupérer les termes de recherche (le code, la désignation et le laboratoire)
+if (!empty($search)) {
+    $searchTerm = '%' . $search . '%';
+    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ?");
+    $countStmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);
     $countStmt->execute();
     $countResult = $countStmt->get_result();
     $totalMedicaments = $countResult->fetch_assoc()['total'];

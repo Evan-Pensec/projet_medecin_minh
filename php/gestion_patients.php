@@ -17,24 +17,12 @@ if (isset($_POST['submit'])) {
         $stmt = $conn->prepare("UPDATE Patient SET nom=?, prenom=?, adresse=?, code_postal=?, ville=?, pays=?, numero_securite_sociale=?, telephone=?, adresse_mail=? WHERE Numero_patient=?");
         $stmt->bind_param("sssssssssi", $nom, $prenom, $adresse, $code_postal, $ville, $pays, $numero_ss, $telephone, $email, $id);
         
-        if ($stmt->execute()) {
-            $message = "Patient modifié avec succès.";
-            $alertType = "success";
-        } else {
-            $message = "Erreur lors de la modification : " . $conn->error;
-            $alertType = "danger";
-        }
+        $stmt->execute();
     } else {
         $stmt = $conn->prepare("INSERT INTO Patient (nom, prenom, adresse, code_postal, ville, pays, numero_securite_sociale, telephone, adresse_mail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssssss", $nom, $prenom, $adresse, $code_postal, $ville, $pays, $numero_ss, $telephone, $email);
         
-        if ($stmt->execute()) {
-            $message = "Patient ajouté avec succès.";
-            $alertType = "success";
-        } else {
-            $message = "Erreur lors de l'ajout : " . $conn->error;
-            $alertType = "danger";
-        }
+        $stmt->execute();
     }
 }
 
@@ -68,11 +56,6 @@ if ($result) {
         
         <?php include 'menu.php'; ?>
         <h1 class="h1">Gestion des Patients</h1>
-        <?php if (isset($message)): ?>
-            <div>
-                <?php echo $message; ?>
-            </div>
-        <?php endif; ?>
         
         <div>
             <div>
