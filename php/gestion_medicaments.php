@@ -1,27 +1,39 @@
 <?php
 require_once 'connexion.php';
 
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 100; 
+$offset = ($page - 1) * $limit;
+
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $medicaments = [];
 
 if (!empty($search)) {
     $searchTerm = '%' . $search . '%';
-    $stmt = $conn->prepare("SELECT * FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ? ORDER BY Designation LIMIT 100");
-    $stmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);
+    $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ?");
+    $countStmt->bind_param("sss", $searchTerm, $searchTerm, $searchTerm);
+    $countStmt->execute();
+    $countResult = $countStmt->get_result();
+    $totalMedicaments = $countResult->fetch_assoc()['total'];
+    
+    $stmt = $conn->prepare("SELECT * FROM Medicament WHERE Designation LIKE ? OR Code_medicament LIKE ? OR Laboratoire LIKE ? ORDER BY Designation LIMIT ? OFFSET ?");
+    $stmt->bind_param("sssii", $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $result = $conn->query("SELECT * FROM Medicament ORDER BY Designation LIMIT 100");
+    $countResult = $conn->query("SELECT COUNT(*) as total FROM Medicament");
+    $totalMedicaments = $countResult->fetch_assoc()['total'];
+    
+    $result = $conn->query("SELECT * FROM Medicament ORDER BY Designation LIMIT $limit OFFSET $offset");
 }
+
+$totalPages = ceil($totalMedicaments / $limit);
 
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $medicaments[] = $row;
     }
 }
-
-$countResult = $conn->query("SELECT COUNT(*) as total FROM Medicament");
-$totalMedicaments = $countResult->fetch_assoc()['total'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,6 +68,8 @@ $totalMedicaments = $countResult->fetch_assoc()['total'];
                 
                 <?php if (!empty($search)): ?>
                     <p>Résultats pour la recherche "<?php echo htmlspecialchars($search); ?>" : <?php echo count($medicaments); ?> médicament(s) trouvé(s)</p>
+                <?php else: ?>
+                    
                 <?php endif; ?>
                 
                 <div class="table-responsive">
@@ -85,10 +99,21 @@ $totalMedicaments = $countResult->fetch_assoc()['total'];
                     </table>
                 </div>
                 
-                <?php if (count($medicaments) == 100 && empty($search)): ?>
-                    <div class="alert alert-info">
-                        Affichage limité aux 100 premiers médicaments. Utilisez la recherche pour affiner les résultats.
-                    </div>
+                <?php if ($totalPages > 1): ?>
+                    <nav aria-label="Navigation des pages">
+                        <ul class="pagination">
+                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <?php if ($i == $page): ?>
+                            <ssn class="page-current"><?php echo $i; ?></ssn>
+                            <?php else: ?>
+                            <a href="?page=<?php echo $i; ?><?php echo !empty($search) ? '&search=' . urlencode($search) : ''; ?>" class="page-link"><?php echo $i; ?></a>
+                            <?php endif; ?>
+                            <?php if ($i < $totalPages): ?>
+                            <span class="page-separator">, </span>
+                            <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </nav>
                 <?php endif; ?>
             </div>
         </div>
