@@ -17,12 +17,8 @@ td{
     text-align: center;
 }
 
-.card-title{
-    font-size: 20px;
-}
-
 .pagination{
-    margin-right: 950px;
+    margin: 10px 950px 10px 10px;
 }
 
 .menu-items {
@@ -50,4 +46,16 @@ ul {
     cursor: pointer;
     border-radius: 4px;
     box-shadow: 0px 8px 8px rgb(231, 127, 127);
+
+}
+
+.amenu{
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid rgb(134, 76, 76);
+    border-radius: 4px;
+}
+
+h5{
+    font-size: 30px;
 }

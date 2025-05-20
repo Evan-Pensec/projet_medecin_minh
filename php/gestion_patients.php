@@ -113,7 +113,7 @@ if ($result) {
                             
                             <div>
                                 <label for="pays">Pays</label>
-                                <input type="text" id="pays" name="pays" value="<?php echo ($patient) ? $patient['pays'] : 'France'; ?>">
+                                <input type="text" id="pays" name="pays" value="<?php echo ($patient) ? $patient['pays'] : ''; ?>">
                             </div>
                             
                             <div>

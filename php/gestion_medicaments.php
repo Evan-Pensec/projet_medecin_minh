@@ -50,7 +50,7 @@ if ($result) {
         <h1 class="h1">Gestion des Médicaments</h1>
         <div>
             <div>
-                <h5 class="card-title">Recherche de médicaments</h5>
+                <h5>Recherche de médicaments</h5>
                 
                 <form method="get">
                     <div>
