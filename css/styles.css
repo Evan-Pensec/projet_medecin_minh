@@ -17,12 +17,13 @@ td{
     text-align: center;
 }
 
-.pagination{
-    margin: 10px 950px 10px 10px;
+.pagination {
+    margin: 10px;
 }
 
 .menu-items {
     display: flex;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
     padding-inline-start: 0;
@@ -56,6 +57,29 @@ ul {
     border-radius: 4px;
 }
 
+.aordo{
+    text-decoration: none;
+    color: inherit;
+    background-color: rgb(216, 216, 216);
+    border-radius: 40px;
+}
+
 h5{
     font-size: 30px;
+    margin-left: 100px;
+}
+
+.form_patients{
+    margin-left: 800px;
+}
+
+.liste_patients{
+    margin-left: 400px;
+}
+
+.button{
+    background-color: rgb(207, 207, 207);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }

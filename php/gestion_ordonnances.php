@@ -112,7 +112,7 @@ if (!empty($searchMed)) {
         <?php if (!$patient): ?>
             <div>
                 Veuillez sélectionner un patient dans la 
-                <a href="gestion_patients.php">liste des patients</a> 
+                <a class="aordo" href="gestion_patients.php">liste des patients</a> 
                 pour créer ou consulter une ordonnance.
             </div>
         <?php else: ?>

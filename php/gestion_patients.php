@@ -80,7 +80,7 @@ if ($result) {
                     <div>
                         <h5><?php echo ($patient) ? 'Modifier un patient' : 'Ajouter un patient'; ?></h5>
                         
-                        <form method="post">
+                        <form class="form_patients" method="post">
                             <?php if ($patient): ?>
                                 <input type="hidden" name="id" value="<?php echo $patient['Numero_patient']; ?>">
                             <?php endif; ?>
@@ -131,7 +131,7 @@ if ($result) {
                                 <input type="email" id="email" name="email" value="<?php echo ($patient) ? $patient['adresse_mail'] : ''; ?>">
                             </div>
                             
-                            <button type="submit" name="submit"><?php echo ($patient) ? 'Modifier' : 'Ajouter'; ?></button>
+                            <button class="button" type="submit" name="submit"><?php echo ($patient) ? 'Modifier' : 'Ajouter'; ?></button>
                             
                             <?php if ($patient): ?>
                                 <a href="gestion_patients.php">Annuler</a>
@@ -146,7 +146,7 @@ if ($result) {
                     <div>
                         <h5>Liste des patients</h5>
                         
-                        <div>
+                        <div class="liste_patients">
                             <table>
                                 <thead>
                                     <tr>
